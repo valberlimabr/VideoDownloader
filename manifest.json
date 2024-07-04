@@ -1,23 +1,41 @@
 {
   "name": "Video Downloader",
-  "version": "0.1",
-  "description": "Simple Video Downloader",
+  "version": "1.0.1",
+  "description": "Ferramenta criada para fazer download de videos em geral.",
   "permissions": [
     "webRequest",
-    "http://*/*",
-    "https://*/*",
     "downloads",
     "activeTab",
-    "unlimitedStorage", 
-    "storage", "management"
+    "unlimitedStorage",
+    "storage",
+    "management",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*/*"
   ],
   "background": {
-    "page": "background.html"
+    "service_worker": "background.js"
   },
-  "browser_action": {
+  "action": {
     "default_popup": "popup/popup.html"
   },
-  "content_security_policy": "script-src 'self' chrome-extension-resource://readme.js; object-src 'self'",
-  "manifest_version": 2,
-  "web_accessible_resources": ["*"]
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "manifest_version": 3,
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "popup/popup.css",
+        "popup/download_item_template.html"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
